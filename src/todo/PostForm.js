@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addPost, updatePost, removePost, samplePost } from './actions/postActions';
+import { addPost, updatePost, removePost, samplePost, sampleUpdatePost, sampleRemovePost } from './actions/postActions';
 
 class PostForm extends Component {
     constructor(props) {
@@ -35,8 +35,10 @@ class PostForm extends Component {
         const post = {id : this.state.id, title : this.state.title, body : this.state.body}
 
         debugger
-        // this.props.addPost(post);
+        this.props.addPost(post);
         this.props.samplePost(post);
+        this.props.sampleUpdatePost(post);
+        this.props.sampleRemovePost(post);
     };
 
     render() {
@@ -88,7 +90,9 @@ const mapDsipatchToProps = {
     addPost,
     removePost,
     updatePost,
-    samplePost
+    samplePost,
+    sampleUpdatePost,
+    sampleRemovePost
 };
 
 export default connect(mapStateToProps, mapDsipatchToProps)(PostForm);

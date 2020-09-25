@@ -1,4 +1,4 @@
-import { DISPLAY_POST, ADD_POST, UPDATE_POST, REMOVE_POST, SAMPLE_POST } from '../actions/types';
+import { DISPLAY_POST, ADD_POST, UPDATE_POST, REMOVE_POST, SAMPLE_POST, SAMPLE_UPDATE_POST } from '../actions/types';
 
 const initialState = {
     items : [{
@@ -34,6 +34,24 @@ export default function postReducer(state = initialState, action) {
             return {
                 ...state,
                 items: [...state.items, action.payload]
+            };
+        case SAMPLE_UPDATE_POST:
+            return {
+                ...state,
+                items : state.items.map(
+                    item => 
+                    item.id === action.payload.id
+                    ? action.payload
+                    : item
+                )
+            };
+        case SAMPLE_REMOVE_POST:
+            return {
+                ...state,
+                items : state.items.filter(
+                    item => 
+                    item.id === action.payload.id
+                )
             };
         default:
             return state;

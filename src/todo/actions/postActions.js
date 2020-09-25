@@ -1,4 +1,4 @@
-import { ADD_POST, REMOVE_POST, UPDATE_POST, DISPLAY_POST, SAMPLE_POST } from './types';
+import { ADD_POST, REMOVE_POST, UPDATE_POST, DISPLAY_POST, SAMPLE_POST, SAMPLE_UPDATE_POST, SAMPLE_REMOVE_POST } from './types';
 import axios from 'axios';
 
 export const displayPost = () => dispatch => {
@@ -56,5 +56,22 @@ export const samplePost = (post) => dispatch => {
         type : SAMPLE_POST,
         payload : post
     });
-    // console.log(post.data);
+};
+
+export const sampleUpdatePost = (post) => dispatch => {
+    debugger
+    console.log('action called')
+    dispatch({
+        type : SAMPLE_UPDATE_POST,
+        payload : post.id
+    });
+};
+
+export const sampleRemovePost = (post) => dispatch => {
+    debugger
+    console.log('action called')
+    dispatch({
+        type : SAMPLE_REMOVE_POST,
+        payload : post.id
+    });
 };
