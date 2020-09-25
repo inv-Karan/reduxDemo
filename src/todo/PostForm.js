@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createPost } from './actions/postActions';
-import Posts from './Posts';
+import { addPost, updatePost, removePost, samplePost } from './actions/postActions';
 
 class PostForm extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            id : "",
             title : [],
-            body : []
-            // title : " ",
-            // body : " "
+            body: []
         };
+    };
+
+    onChangeId = e => {
+        this.setState({
+            id : e.target.value,
+        });
     };
 
     onChangeTitle = e => {
@@ -29,58 +31,64 @@ class PostForm extends Component {
         });
     };
 
-
     onSubmit = e => {
-        e.preventDefault();
+        const post = {id : this.state.id, title : this.state.title, body : this.state.body}
 
-        const post = {}
-
-    // axios.post('https://jsonplaceholder.typicode.com/posts', {
-        // headers: {
-        //     'content-type': 'application/json'
-        // },
-        // body: JSON.stringify(this.state.body)
-
-    //  })
-    // .then(res => {
-        // console.log(res);
-        // console.log(res.data);
-        // res.json()
-    // });
-    debugger
-        this.props.createPost(post);
+        debugger
+        // this.props.addPost(post);
+        this.props.samplePost(post);
     };
 
     render() {
         return (
             <div>
-                <h1>Add Post</h1>
-                <form>
+                <h1>My Posts</h1>
+                    <div>
+                        <label>ID: </label><br />
+                        <input 
+                        type = "number" 
+                        name = "id"
+                        placeholder = "none"
+                        onChange = {this.onChangeId}
+                        value = {this.state.id} />
+                    </div>
+                    <br />
                     <div>
                         <label>Title: </label><br />
-                        <input type = "text" 
+                        <input 
+                        type = "text" 
                         name = "title" 
+                        placeholder = "none" 
                         onChange = {this.onChangeTitle}
                         value = {this.state.title} />
                     </div>
                     <br />
                     <div>
                         <label>Body: </label><br />
-                        <textarea name = "body" 
+                        <textarea 
+                        name = "body" 
+                        placeholder = "none" 
                         onChange = {this.onChangeBody}
                         value = {this.state.body} />
                     </div>
                     <br />
-                    <button type = "submit">Submit</button>
-                </form>
+                    <button onClick = {() => {
+                        this.onSubmit()
+                    }} >Submit</button>
             </div>
         );
     };
 };
 
-PostForm.propTypes = {
-    createPost : PropTypes.func.isRequired
+const mapStateToProps = state => ({
+    post : state.post.items
+});
+
+const mapDsipatchToProps = {
+    addPost,
+    removePost,
+    updatePost,
+    samplePost
 };
 
-// export default PostForm;
-export default connect(null, { createPost })(PostForm);
+export default connect(mapStateToProps, mapDsipatchToProps)(PostForm);

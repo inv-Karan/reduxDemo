@@ -1,37 +1,60 @@
-import { AXIOS_POSTS, NEW_POST } from './types';
+import { ADD_POST, REMOVE_POST, UPDATE_POST, DISPLAY_POST, SAMPLE_POST } from './types';
 import axios from 'axios';
-import Posts from '../Posts';
 
-export const axiosPosts = () => dispatch => {
+export const displayPost = () => dispatch => {
     console.log('getting');
     axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then(posts => {
-        // let data = console.log(res.data);
-        dispatch({
-            type : AXIOS_POSTS,
-            payload : posts.data
-        });
-        console.log(posts.data);
-    });
-};
-
-export const createPost = (postData) => dispatch => {
-    console.log('action called');
-    axios.post('https://jsonplaceholder.typicode.com/posts', {
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(postData)
-     })
-    // .then(res => {
-    //     console.log(res.data);
-    //     res.json()
-    // })
     .then(post => {
         dispatch({
-            type : NEW_POST,
+            type : DISPLAY_POST,
             payload : post.data
         });
         console.log(post.data);
     });
+};
+
+export const addPost = (id, title, body) => dispatch => {
+    debugger
+    console.log('action called');
+    axios.post(`https://jsonplaceholder.typicode.com/posts`, {id : id, title : title, body : body}) // id, title, body from end-user to get response from relative api keys id, name, content respectively. Will be provided by postman collection from api developer.
+    .then(post => {
+        dispatch({
+            type : ADD_POST,
+            payload : post.data
+        });
+        console.log(post.data);
+    });
+};
+
+export const removePost = (id) => dispatch => {
+    console.log('action called');
+    axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+    .then(post => {
+        dispatch({
+            type : REMOVE_POST,
+            payload : post.data
+        });
+    });
+};
+
+export const updatePost = (id, title, body) => dispatch => {
+    console.log('action called');
+    axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {title : title, body : body}) // title, body from end-user to get response from relative api keys name, content respectively. Will be provided by postman collection from api developer.
+    .then(post => {
+        dispatch({
+            type : UPDATE_POST,
+            payload : post.data
+        });
+        console.log(post.data);
+    });
+};
+
+export const samplePost = (post) => dispatch => {
+    debugger
+    console.log('action called')
+    dispatch({
+        type : SAMPLE_POST,
+        payload : post
+    });
+    // console.log(post.data);
 };

@@ -1,25 +1,39 @@
-import { AXIOS_POSTS, NEW_POST } from '../actions/types';
+import { DISPLAY_POST, ADD_POST, UPDATE_POST, REMOVE_POST, SAMPLE_POST } from '../actions/types';
 
 const initialState = {
     items : [{
-        title:'abc',
-        body:'123456'
-    }],
-    item : {}
+        id: '1',
+        title:'title',
+        body:'body'
+    }]
 };
 
-export default function(state = initialState, action) {
+export default function postReducer(state = initialState, action) {
     switch(action.type) {
-        case AXIOS_POSTS:
-            // console.log('reducer');
+        case DISPLAY_POST:
             return {
                 ...state,
                 items: action.payload
             };
-        case NEW_POST:
+        case ADD_POST:
             return {
                 ...state,
-                item : action.payload
+                items : action.payload
+            };
+        case UPDATE_POST:
+            return {
+                ...state,
+                items : action.payload
+            };
+        case REMOVE_POST:
+            return {
+                ...state,
+                items : action.payload
+            };
+        case SAMPLE_POST:
+            return {
+                ...state,
+                items: [...state.items, action.payload]
             };
         default:
             return state;
