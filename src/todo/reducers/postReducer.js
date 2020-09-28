@@ -1,4 +1,4 @@
-import { DISPLAY_POST, ADD_POST, UPDATE_POST, REMOVE_POST, SAMPLE_POST, SAMPLE_UPDATE_POST } from '../actions/types';
+import { DISPLAY_POST, ADD_POST, UPDATE_POST, REMOVE_POST, SAMPLE_POST, SAMPLE_UPDATE_POST, SAMPLE_REMOVE_POST } from '../actions/types';
 
 const initialState = {
     items : [{

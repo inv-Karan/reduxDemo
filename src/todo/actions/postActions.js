@@ -63,7 +63,7 @@ export const sampleUpdatePost = (post) => dispatch => {
     console.log('action called')
     dispatch({
         type : SAMPLE_UPDATE_POST,
-        payload : post.id
+        payload : post
     });
 };
 
