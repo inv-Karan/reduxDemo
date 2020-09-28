@@ -35,10 +35,10 @@ class PostForm extends Component {
         const post = {id : this.state.id, title : this.state.title, body : this.state.body}
 
         debugger
-        // this.props.addPost(post);
-        // this.props.samplePost(post);
+        this.props.addPost(post);
+        this.props.samplePost(post);
         this.props.sampleUpdatePost(post);
-        // this.props.sampleRemovePost(post);
+        this.props.sampleRemovePost(post);
     };
 
     render() {
