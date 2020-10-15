@@ -9,6 +9,7 @@ class Posts extends Component {
     // };
 
     render() {
+        debugger
         const postItems = this.props.post.map(post => (
             <div key = {post.id}>
                 <h2>{post.id}</h2>
@@ -16,14 +17,22 @@ class Posts extends Component {
                 <p>{post.body}</p>
             {/* </div> */}
             <button onClick = {() => {
+                debugger
                 // const post = {id : this.state.id, title : this.state.title, body : this.state.body}
 
                 // this.props.sampleUpdatePost(post)
-                console.log(post.id)
+                console.log(`updated ${post.id} on edit button clicked!` )
+                // debugger
+                const mappedpostItems = this.props.post.map(item => (
+                    item.postItems
+                ))
+                console.log(mappedpostItems)
+                this.props.selectedPost(mappedpostItems)
             }}>
                 Edit
             </button>
             <button onClick = {() => {
+                debugger
                 // const post = {id : this.state.id}
 
                 // this.props.sampleRemovePost(post)
@@ -61,12 +70,16 @@ class Posts extends Component {
     };
 };
 
-const mapStateToProps = state => ({
-    post : state.post.items
-});
+const mapStateToProps = state => { debugger 
+    return 
+    {
+        post : state.post.items,
+        post1 : state.post.selectedPost
+    };
+};
 
 const mapDispatchToProps = {
-    displayPost, sampleUpdatePost, sampleRemovePost, filteredPost
+    displayPost, sampleUpdatePost, sampleRemovePost, filteredPost, selectedPost
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

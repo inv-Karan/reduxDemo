@@ -92,3 +92,12 @@ export const filteredPost = (post) => dispatch => {
         payload : post
     });
 };
+
+export const selectedPost = (post) => dispatch => {
+    debugger
+    console.log('action called')
+    dispatch({
+        type : SELECTED_POST,
+        payload : post
+    });
+};

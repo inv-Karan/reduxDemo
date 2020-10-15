@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import { Provider } from 'react-redux';
 // import { func, number } from 'prop-types';
@@ -9,9 +9,9 @@ import PostForm from './todo/PostForm';
 import realstore from './todo/realstore';
 
 class App extends Component {
-  constructor(props){
-    super(props)
-  }
+  // constructor(props){
+  //   super(props)
+  // }
   render() {
     return (
       <Provider store = {realstore}>

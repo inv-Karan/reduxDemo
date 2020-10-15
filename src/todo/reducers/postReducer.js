@@ -1,4 +1,4 @@
-import { DISPLAY_POST, ADD_POST, UPDATE_POST, REMOVE_POST, SAMPLE_POST, SAMPLE_UPDATE_POST, SAMPLE_REMOVE_POST, FILTERED_POST } from '../actions/types';
+import { DISPLAY_POST, ADD_POST, UPDATE_POST, REMOVE_POST, SAMPLE_POST, SAMPLE_UPDATE_POST, SAMPLE_REMOVE_POST, FILTERED_POST, SELECTED_POST } from '../actions/types';
 
 const initialState = {
     items : [{
@@ -15,7 +15,8 @@ const initialState = {
         id: '3',
         title:'title3',
         body:'body3'
-    },]
+    },],
+    selecteditem : {}
 };
 
 export default function postReducer(state = initialState, action) {
@@ -68,6 +69,11 @@ export default function postReducer(state = initialState, action) {
                 ...state,
                 items : action.payload
             };
+        case SELECTED_POST:
+            return {
+                ...state,
+                selecteditem : action.payload
+            }
         default:
             return state;
     };
